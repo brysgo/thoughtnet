@@ -1,13 +1,5 @@
-function operation(index, a, b) {
-  const operations = [
-    (a, b) => a & b,
-    (a, b) => a | b,
-    (a, b) => a ^ b,
-    (a) => ~a,
-  ]
-  const bits = (truthy) => truthy ? 0b1 : 0b0;
-  return operations[index](bits(a), bits(b)) & 0b1;
-}
+import operations from './operations';
+import { boolToBit } from './utils';
 
 export default class Node {
   constructor(left, right, op) {
@@ -19,12 +11,19 @@ export default class Node {
   
   // manually trigger node
   on() {
-    this.value = true;
+    this.value = 0b1;
   }
   
   // manually suppress node
   off() {
-    this.value = false;
+    this.value = 0b0;
+  }
+  
+  // tell this node it did good
+  reward() {
+    this.score++;
+    this.left.reward();
+    this.right.reward();
   }
   
   receive({value, sender, timestep}) {
@@ -43,7 +42,7 @@ export default class Node {
       `);
     }
     if (this.tmp !== undefined) {
-      this.value = operation(this.op, left, right)
+      this.value = operations[this.op](boolToBit(left), boolToBit(right)) & 0b1;
       this.unchanged = timestep;
       this.tmp = undefined;
     } else {
