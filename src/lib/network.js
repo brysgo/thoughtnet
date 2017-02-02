@@ -1,35 +1,43 @@
-import Node from './node'
+import Pool from './pool';
+import BinaryOp from './binary_op';
 
 export default class Network {
+  
   constructor() {
-    this._nodes = [new Node()];
-    this._inputs = [];
+    Object.assign(this, {
+      sources: {},
+      targets: {},
+      nodePool: new Pool(BinaryOp),
+      generation: 0,
+      running: false
+    });
+  }
+
+  start() {
+    
   }
   
-  attachInput(anInputSource) {
-    this._inputs.push(anInputSource);
+  stop() {
+    
+  }
+  
+  runOnce() {
+    
   }
   
   forward() {
-    this._inputs.forEach((inputSource) => {
-      inputSource
-    });
-    this.nodes[0].on()
+    
   }
   
   backward() {
     
   }
   
-  spawn() {
+  attachSource() {
     
   }
   
-  prune() {
+  attachTarget() {
     
-  }
-  
-  get nodes() {
-    return this._nodes;
   }
 }

@@ -6,11 +6,15 @@ import Organism from './organism';
 let constructorArgCheck;
 let counter = 0;
 class ExampleOrganism extends Organism {
-  constructor(arg) {
+  constructor(pool, arg) {
     super()
     constructorArgCheck(arg);
     this.reward = counter;
     counter++;
+  }
+  
+  setRewardValue() {
+    
   }
   
   rewardValue() {

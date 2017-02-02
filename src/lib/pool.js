@@ -13,7 +13,7 @@ export default class Pool {
     let result = [];
     const { organismClass } = this;
     for (let i = 0; i < numOrganisms; ++i) {
-      result.push(new organismClass(this.spawnArgs))
+      result.push(new organismClass(this, this.spawnArgs))
     }
     this.organisms = this.organisms.concat(result);
     return result;
