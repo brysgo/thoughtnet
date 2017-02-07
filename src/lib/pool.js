@@ -1,7 +1,7 @@
 require('babel-polyfill');
 
 export default class Pool {
-  constructor(organismClass, spawnArgs) {
+  constructor(organismClass, ...spawnArgs) {
     Object.assign(this, {
       organismClass,
       spawnArgs,
@@ -9,11 +9,15 @@ export default class Pool {
     })
   }
   
+  unshift(...items) {
+    this.organisms.unshift(...items);
+  }
+  
   spawn(numOrganisms=1) {
     let result = [];
     const { organismClass } = this;
     for (let i = 0; i < numOrganisms; ++i) {
-      result.push(new organismClass(this, this.spawnArgs))
+      result.push(new organismClass(this, ...this.spawnArgs))
     }
     this.organisms = this.organisms.concat(result);
     return result;

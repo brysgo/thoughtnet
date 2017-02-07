@@ -4,13 +4,15 @@ import Organism from './organism';
 import operations from './utils/operations';
 
 export default class BinaryOp extends Abstract {
-  constructor(pool, operation='^') {
+  constructor(pool, operation) {
+    const ops = Object.keys(operations);
+    if (!operation) operation = ops[Math.floor(Math.random()*ops.length)];
     super(Node, Organism);
     Object.assign(this, {
       _currentValue: 0,
       operation,
-      left: pool[Math.floor(Math.random() * pool.length)],
-      right: pool[Math.floor(Math.random() * pool.length)]
+      left: Array.from(pool)[Math.floor(Math.random() * pool.length)],
+      right: Array.from(pool)[Math.floor(Math.random() * pool.length)]
     });
   }
   

@@ -1,9 +1,9 @@
 import Organism from './organism';
 
 export default class Anagramlet extends Organism {
-  constructor(pool, targetSize) {
+  constructor(pool, nodePool, targetSize) {
     super();
-    this._node = Math.floor(Math.random() * pool.length);
+    this._node = Array.from(nodePool)[Math.floor(Math.random() * nodePool.length)];
     this._position = Math.floor(Math.random() * targetSize);
   }
   
@@ -13,6 +13,14 @@ export default class Anagramlet extends Organism {
   
   rewardValue() {
     return this._rewardValue;
+  }
+  
+  get value() {
+    return this._node.currentValue();
+  }
+  
+  get position() {
+    return this._position;
   }
   
   die() {
