@@ -31,6 +31,6 @@ export default class SourceBit extends Abstract {
   }
   
   rewardValue() {
-    return;
+    return Infinity;
   }
 }

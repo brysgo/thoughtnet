@@ -6,7 +6,7 @@ export default class Network {
   
   constructor() {
     Object.assign(this, {
-      targets: {},
+      targets: [],
       nodePool: new Pool(BinaryOp),
       generation: 0,
       running: false,
@@ -24,27 +24,43 @@ export default class Network {
   }
   
   runOnce() {
-    this.forward();
+    const result = this.forward();
     this.backward();
+    this.generation++;
+    return result;
   }
   
   forward() {
     Array.from(this.nodePool).forEach((node) => node.forward());
-    const targetPools = Object.values(this.targets);
-    this._currentOutputs = targetPools.map((targetPool) => {
-      return Array.from(targetPool).reduce((output, anagramlet) => {
+    this._currentOutputs = this.targets.map((target) => {
+      return Array.from(target.pool).reduce((output, anagramlet) => {
         const { position, value } = anagramlet;
-        while (output.length <= position) { output.push([0, 0]) }
+        while (output.length < target.size) { output.push([0, 0]) }
         const [sum, count] = output[position];
         output[position] = [sum + value, count + 1];
         return output;
-      }, []).map(([sum, count]) => sum / count);
+      }, []).map(([sum, count]) => ((sum / count) >= 0.5) ? 1 : 0);
     });
+    this.targets.forEach((target) => {
+      target.forward();
+    });
+    return this._currentOutputs;
   }
   
   backward() {
-    const { _currentOutputs } = this;
-    console.log(JSON.stringify(_currentOutputs));
+    this.targets.forEach((target) => {
+      target.backward();
+      if (this.generation % 5 === 4) {
+        const pruned = target.pool.prune(2);
+        Array.from(target.pool).forEach((anagramlet) => anagramlet.setRewardValue(0));
+        target.pool.spawn(pruned);
+      }
+    });
+    if (this.generation % 5 === 4) {
+      const pruned = this.nodePool.prune(2);
+      Array.from(this.nodePool).forEach((node) => node.setRewardValue(0));
+      this.nodePool.spawn(pruned);
+    }
   }
   
   attachSource(source) {
@@ -53,7 +69,9 @@ export default class Network {
   }
   
   attachTarget(target) {
-    this.targets[target] = new Pool(Anagramlet, this.nodePool, target.size);
-    this.targets[target].spawn(100);
+    const pool = new Pool(Anagramlet, this.nodePool, target.size);
+    target.setPool(pool);
+    this.targets.push(target);
+    pool.spawn(100);
   }
 }

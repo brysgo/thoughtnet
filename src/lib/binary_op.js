@@ -10,6 +10,7 @@ export default class BinaryOp extends Abstract {
     super(Node, Organism);
     Object.assign(this, {
       _currentValue: 0,
+      _rewardValue: 0,
       operation,
       left: Array.from(pool)[Math.floor(Math.random() * pool.length)],
       right: Array.from(pool)[Math.floor(Math.random() * pool.length)]
@@ -30,12 +31,12 @@ export default class BinaryOp extends Abstract {
     return this._currentValue;
   }
   
-  setRewardValue(_rewardValue) {
-    this._rewardValue = _rewardValue;
+  setRewardValue(rewardValue) {
+    this._rewardValue = rewardValue;
   }
   
   rewardValue() {
-    this._rewardValue;
+    return this._rewardValue;
   }
   
   die() {

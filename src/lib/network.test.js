@@ -20,14 +20,19 @@ it('can run a basic example source to target', () => {
     }
   }, 5));
   
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
-  network.runOnce();
+  let i;
+  for (i=0; i<100; i++) {
+    network.runOnce();
+  }
+  
+  let correct = 0;
+  for (; i<200; i++) {
+    let output = network.runOnce()[0].join('');
+    var n= (i+1 >>> 0).toString(2);
+    n="00000".substr(n.length)+n;
+    if (output == n.substr(0, 5)) correct++;
+  }
+  
+  expect(correct).toBeGreaterThan(25);
+  
 })

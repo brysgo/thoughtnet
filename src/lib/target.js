@@ -8,6 +8,10 @@ export default class Target extends Node {
     this._size = size;
   }
   
+  setPool(pool) {
+    this._targetPool = pool;
+  }
+  
   currentValue() {
     return this._currentValue;
   }
@@ -17,7 +21,19 @@ export default class Target extends Node {
   }
   
   backward() {
-    return;
+    Array.from(this._targetPool).forEach((anagramlet) => {
+      if (anagramlet.position < this.size) {
+        const reward = this.currentValue()[anagramlet.position] == anagramlet.value ? 1 : 0
+        anagramlet.setRewardValue(anagramlet.rewardValue() + reward);
+      }
+    })
+    Array.from(this._targetPool).forEach((anagramlet) => {
+      anagramlet.backward();
+    })
+  }
+  
+  get pool() {
+    return this._targetPool;
   }
   
   get size() {

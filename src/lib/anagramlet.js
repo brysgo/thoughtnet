@@ -5,6 +5,7 @@ export default class Anagramlet extends Organism {
     super();
     this._node = Array.from(nodePool)[Math.floor(Math.random() * nodePool.length)];
     this._position = Math.floor(Math.random() * targetSize);
+    this._rewardValue = 0;
   }
   
   setRewardValue(value) {
@@ -13,6 +14,10 @@ export default class Anagramlet extends Organism {
   
   rewardValue() {
     return this._rewardValue;
+  }
+  
+  backward() {
+    this._node.setRewardValue(this._node.rewardValue() + this.rewardValue());
   }
   
   get value() {
