@@ -34,8 +34,7 @@ export default class Network {
     this._currentOutputs = targetPools.map((targetPool) => {
       return Array.from(targetPool).reduce((output, anagramlet) => {
         const { position, value } = anagramlet;
-        while (output.length <= position) { output.push(null) }
-        if (!output[position]) output[position] = [0, 0];
+        while (output.length <= position) { output.push([0, 0]) }
         const [sum, count] = output[position];
         output[position] = [sum + value, count + 1];
         return output;

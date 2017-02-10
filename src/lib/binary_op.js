@@ -14,6 +14,7 @@ export default class BinaryOp extends Abstract {
       left: Array.from(pool)[Math.floor(Math.random() * pool.length)],
       right: Array.from(pool)[Math.floor(Math.random() * pool.length)]
     });
+    this.currentValue = this.currentValue.bind(this);
   }
   
   forward() {
@@ -26,7 +27,7 @@ export default class BinaryOp extends Abstract {
   }
   
   currentValue() {
-    this._currentValue;
+    return this._currentValue;
   }
   
   setRewardValue(_rewardValue) {
