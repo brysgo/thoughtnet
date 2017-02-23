@@ -1,4 +1,6 @@
-require('babel-polyfill');
+try {
+  require('babel-polyfill');
+} catch (ex) { }
 import winston from 'winston';
 
 export default class Pool {

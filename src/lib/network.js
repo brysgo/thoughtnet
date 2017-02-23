@@ -13,6 +13,7 @@ export default class Network {
       _currentOutputs: []
     });
     this.runOnce = this.runOnce.bind(this);
+    this.forward = this.forward.bind(this);
   }
 
   start() {
@@ -51,8 +52,7 @@ export default class Network {
     this.targets.forEach((target) => {
       target.backward();
       if (this.generation % 5 === 4) {
-        const pruned = target.pool.prune(2);
-        Array.from(target.pool).forEach((anagramlet) => anagramlet.setRewardValue(0));
+        const pruned = target.pool.prune(this.generation/2);
         target.pool.spawn(pruned);
       }
     });
@@ -65,13 +65,13 @@ export default class Network {
   
   attachSource(source) {
     this.nodePool.unshift(...source.bits());
-    this.nodePool.spawn(100);
+    this.nodePool.spawn(1000);
   }
   
   attachTarget(target) {
     const pool = new Pool(Anagramlet, this.nodePool, target.size);
     target.setPool(pool);
     this.targets.push(target);
-    pool.spawn(100);
+    pool.spawn(1000);
   }
 }
