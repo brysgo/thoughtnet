@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "csv-parse": "^1.2.0",
+    "cytoscape": "^2.7.15",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "winston": "^2.3.1"

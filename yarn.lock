@@ -1582,6 +1582,10 @@ cycle@1.0.x:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
 
+cytoscape@^2.7.15:
+  version "2.7.15"
+  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-2.7.15.tgz#837cf4a745585b03840eaba17742b05a8becc9a1"
+
 d@^0.1.1, d@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/d/-/d-0.1.1.tgz#da184c535d18d8ee7ba2aa229b914009fae11309"
