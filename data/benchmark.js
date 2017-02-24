@@ -49,7 +49,7 @@ parse(input, {comment: '#'}, function(err, unshuffled){
         k="0000".substr(k.length)+k;
         return n+k;
       }).join('');
-      console.log('training data ', i,': ', y);
+      // console.log('training data ', i,': ', y);
       yield y;
     }
   }, 32));
@@ -94,3 +94,5 @@ parse(input, {comment: '#'}, function(err, unshuffled){
   
   console.log(`${correct} correct out of ${output.length-(numTrainingSamples*trainingIterations)} test samples an ${numTrainingSamples} training samples.`);
 });
+
+export default { network };

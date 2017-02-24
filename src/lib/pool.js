@@ -30,8 +30,8 @@ export default class Pool {
   prune(minReward) {
     let before = this.organisms.length;
     this.organisms = this.organisms.filter((organism) => {
-      winston.debug(`organism reward is ${organism.rewardValue()}`)
-      if (organism.rewardValue() < minReward) {
+      winston.debug(`organism reward is ${organism.rewardValue}`)
+      if (organism.rewardValue < minReward) {
         organism.die();
         return false;
       } else {

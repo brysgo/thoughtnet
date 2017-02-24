@@ -23,8 +23,8 @@ export default class Target extends Node {
   backward() {
     Array.from(this._targetPool).forEach((anagramlet) => {
       if (anagramlet.position < this.size) {
-        const reward = this.currentValue()[anagramlet.position] == anagramlet.value ? 1 : 0
-        anagramlet.setRewardValue(anagramlet.rewardValue() + reward);
+        const reward = this.currentValue()[anagramlet.position] == anagramlet.value ? 1 : -1
+        anagramlet.setRewardValue(anagramlet.rewardValue + reward);
       }
     })
     Array.from(this._targetPool).forEach((anagramlet) => {

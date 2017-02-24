@@ -12,12 +12,8 @@ export default class Anagramlet extends Organism {
     this._rewardValue = value;
   }
   
-  rewardValue() {
-    return this._rewardValue;
-  }
-  
   backward() {
-    this._node.setRewardValue(this._node.rewardValue() + this.rewardValue());
+    this._node.setRewardValue(this._node.rewardValue + this.rewardValue);
   }
   
   get value() {
@@ -26,6 +22,10 @@ export default class Anagramlet extends Organism {
   
   get position() {
     return this._position;
+  }
+  
+  get rewardValue() {
+    return this._rewardValue;
   }
   
   die() {

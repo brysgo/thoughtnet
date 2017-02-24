@@ -1,10 +1,6 @@
 import Abstract from './abstract';
 
 export default class Node extends Abstract {
-  constructor() {
-    super();
-  }
-  
   forward() {
     return 'use it to update the currentValue with the dependancies and operation';
   }

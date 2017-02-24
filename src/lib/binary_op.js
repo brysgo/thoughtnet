@@ -35,7 +35,7 @@ export default class BinaryOp extends Abstract {
     this._rewardValue = rewardValue;
   }
   
-  rewardValue() {
+  get rewardValue() {
     return this._rewardValue;
   }
   

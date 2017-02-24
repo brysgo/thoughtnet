@@ -35,12 +35,12 @@ export default class Network {
     Array.from(this.nodePool).forEach((node) => node.forward());
     this._currentOutputs = this.targets.map((target) => {
       return Array.from(target.pool).reduce((output, anagramlet) => {
-        const { position, value } = anagramlet;
+        const { position, value, rewardValue } = anagramlet;
         while (output.length < target.size) { output.push([0, 0]) }
-        const [sum, count] = output[position];
-        output[position] = [sum + value, count + 1];
+        const [prev, prevReward] = output[position];
+        output[position] = (rewardValue > prevReward) ? [value, rewardValue] : [prev, prevReward];
         return output;
-      }, []).map(([sum, count]) => ((sum / count) >= 0.5) ? 1 : 0);
+      }, []).map(([result, reward]) => result);
     });
     this.targets.forEach((target) => {
       target.forward();
@@ -51,16 +51,12 @@ export default class Network {
   backward() {
     this.targets.forEach((target) => {
       target.backward();
-      if (this.generation % 5 === 4) {
-        const pruned = target.pool.prune(this.generation/2);
-        target.pool.spawn(pruned);
-      }
+      const pruned = target.pool.prune(1);
+      target.pool.spawn(pruned);
     });
-    if (this.generation % 5 === 4) {
-      const pruned = this.nodePool.prune(2);
-      Array.from(this.nodePool).forEach((node) => node.setRewardValue(0));
-      this.nodePool.spawn(pruned);
-    }
+    const pruned = this.nodePool.prune(1);
+    Array.from(this.nodePool).forEach((node) => node.setRewardValue(0));
+    this.nodePool.spawn(pruned);
   }
   
   attachSource(source) {

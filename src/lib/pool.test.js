@@ -17,7 +17,7 @@ class ExampleOrganism extends Organism {
     
   }
   
-  rewardValue() {
+  get rewardValue() {
     return this.reward;
   }
   
