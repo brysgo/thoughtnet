@@ -1,8 +1,8 @@
 "use strict";
 const parse = require('csv-parse');
 const fs = require('fs');
-const n2n = require('../src/lib').default;
-const network = new n2n.Network();
+const tn = require('../src/lib').default;
+const network = new tn.Network();
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -39,7 +39,7 @@ function expandData(data) {
 var input = fs.readFileSync('./iris.data', 'utf8');;
 parse(input, {comment: '#'}, function(err, unshuffled){
   var output = expandData(unshuffled);
-  network.attachSource(new n2n.Source(function*() {
+  network.attachSource(new tn.Source(function*() {
     for (let i=0; i<output.length; i++) {
       let y = output[i].slice(0, -1).map((x) => {
         let [left, right] = x.split('.').map((s) => parseInt(s));
@@ -54,7 +54,7 @@ parse(input, {comment: '#'}, function(err, unshuffled){
     }
   }, 32));
   
-  network.attachTarget(new n2n.Target(function*() {
+  network.attachTarget(new tn.Target(function*() {
     for (let i=0; i<output.length; i++) {
       if ((output[i].length) > 1) {
         // console.log('target: ', output[i][output[i].length-1]);
