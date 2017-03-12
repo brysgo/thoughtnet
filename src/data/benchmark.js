@@ -1,8 +1,7 @@
 "use strict";
 const parse = require('csv-parse');
-const fs = require('fs');
-const tn = require('../src/lib').default;
-const network = new tn.Network();
+const tn = require('../lib').default;
+export const network = new tn.Network();
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -36,7 +35,7 @@ function expandData(data) {
   return duplicatedTrainingSamples.concat(testSamples);
 }
 
-var input = fs.readFileSync('./iris.data', 'utf8');;
+var input = require('./iris.data');
 parse(input, {comment: '#'}, function(err, unshuffled){
   var output = expandData(unshuffled);
   network.attachSource(new tn.Source(function*() {
@@ -75,24 +74,26 @@ parse(input, {comment: '#'}, function(err, unshuffled){
     }
   }, 2));
   
-  let i;
-  for (i=0; i<(trainingIterations*numTrainingSamples); i++) {
-    network.runOnce();
-  }
-  
+  let i = 0;
   let correct = 0;
-  for (; i<(output.length); i++) {
-    let n = network.forward()[0].join('');
-    let target = {
-      "Iris-setosa": "00",
-      "Iris-versicolor": "01",
-      "Iris-virginica": "10"
-    }[output[i][output[i].length-1]];
-    // console.log('result: ', n, target);
-    if (n == target) correct++;
-  }
+  setInterval(() => {
+    if (i<(trainingIterations*numTrainingSamples)) {
+      network.runOnce();
+    } else if (i<(output.length)) {
+      let n = network.forward()[0].join('');
+      let target = {
+        "Iris-setosa": "00",
+        "Iris-versicolor": "01",
+        "Iris-virginica": "10"
+      }[output[i][output[i].length-1]];
+      // console.log('result: ', n, target);
+      if (n == target) correct++;
+    } else if (i === output.length) {
+      console.log(`${correct} correct out of ${output.length-(numTrainingSamples*trainingIterations)} test samples an ${numTrainingSamples} training samples.`);
+    }
+    
+    i++;
+  }, 100);
   
-  console.log(`${correct} correct out of ${output.length-(numTrainingSamples*trainingIterations)} test samples an ${numTrainingSamples} training samples.`);
+  
 });
-
-export default { network };

@@ -1,12 +1,14 @@
 import Abstract from './abstract';
 import Node from './node';
 import Organism from './organism';
+const uuidV4 = require('uuid/v4');
 
 export default class SourceBit extends Abstract {
   constructor(source, i) {
     super(Node, Organism);
     this._source = source;
     this._i = i;
+    this._id = uuidV4();
   }
   
   currentValue() {
@@ -28,6 +30,10 @@ export default class SourceBit extends Abstract {
   
   setRewardValue(value) {
     return;
+  }
+  
+  get id() {
+    return this._id;
   }
   
   get rewardValue() {

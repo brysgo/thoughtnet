@@ -49,13 +49,13 @@ export default class Network {
   }
   
   backward() {
+    Array.from(this.nodePool).forEach((node) => node.setRewardValue(0));
     this.targets.forEach((target) => {
       target.backward();
       const pruned = target.pool.prune(1);
       target.pool.spawn(pruned);
     });
     const pruned = this.nodePool.prune(1);
-    Array.from(this.nodePool).forEach((node) => node.setRewardValue(0));
     this.nodePool.spawn(pruned);
   }
   

@@ -8,7 +8,7 @@ Almost forgot, it is built to run in the browser, so the worlds most powerful AI
 
 * [x] Create algorithm that supports this model
 * [x] Test algorithm on some traditional supervised learning datasets
-* [ ] Visualize algorithm in browser
+* [x] Visualize algorithm in browser
 * [ ] Build UI for choosing, adding, sharing sources and targets
 * [ ] Find creative ways to demonstrate flexibility of algorithm
 * [ ] Design and implement p2p model

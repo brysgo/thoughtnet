@@ -2,6 +2,7 @@ import Abstract from './abstract';
 import Node from './node';
 import Organism from './organism';
 import operations from './utils/operations';
+const uuidV4 = require('uuid/v4');
 
 export default class BinaryOp extends Abstract {
   constructor(pool, operation) {
@@ -11,6 +12,7 @@ export default class BinaryOp extends Abstract {
     Object.assign(this, {
       _currentValue: 0,
       _rewardValue: 0,
+      _id: uuidV4(),
       operation,
       left: Array.from(pool)[Math.floor(Math.random() * pool.length)],
       right: Array.from(pool)[Math.floor(Math.random() * pool.length)]
@@ -37,6 +39,10 @@ export default class BinaryOp extends Abstract {
   
   get rewardValue() {
     return this._rewardValue;
+  }
+  
+  get id() {
+    return this._id;
   }
   
   die() {
