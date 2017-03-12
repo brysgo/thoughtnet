@@ -4,6 +4,8 @@ This is the start of a horizontally scalable AI that can be taught anything and 
 
 Almost forgot, it is built to run in the browser, so the worlds most powerful AI cluster could one day come online with a few million clicks of a link.
 
+[Here](https://brysgo.github.io/thoughtnet) is the running example, isn't quite ready for prime time yet but.
+
 # Todo list
 
 * [x] Create algorithm that supports this model
