@@ -13,10 +13,7 @@ class App extends Component {
   
   render() {
     const { showVisualization } = this.state;
-    return (<div style={{flex: 1, height: '100%'}}>
-      { (showVisualization) ? <NodeGraphVis network={network}/> : <div>hidden</div> }
-      <button style={{position: 'fixed', top: 0, left: 0}} onClick={() => this.setState({showVisualization: !showVisualization})}>Toggle Visualization</button>
-    </div>);
+    return (showVisualization) ? <NodeGraphVis network={network}/> : <div>hidden</div>;
   }
 }
 

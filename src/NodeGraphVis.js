@@ -1,33 +1,19 @@
 import React, { Component } from 'react';
 import SourceBit from './lib/source_bit'
 
-import Graph from 'react-graph-vis'
+import { Layer, Circle, Line, Stage, Group, Text } from 'react-konva';
 
 class NodeGraphVis extends Component {
   constructor({network}) {
     super();
     this.state = {timestep: 0};
     this.network = network;
-    this.options = {
-      "edges": {
-        "smooth": {
-          "forceDirection": "none"
-        }
-      },
-      "physics": {
-        "hierarchicalRepulsion": {
-          "centralGravity": 0
-        },
-        "minVelocity": 0.75,
-        "solver": "hierarchicalRepulsion"
-      }
-    }
   }
   
   componentDidMount() {
     this.interval = setInterval(() => {
       this.setState({});
-    }, 5000);
+    }, 1000);
   }
   
   componentWillUnmount() {
@@ -41,7 +27,7 @@ class NodeGraphVis extends Component {
     };
     Array.from(this.network.nodePool).forEach((node) => {
       let reward = node.rewardValue;
-      if (reward < 1) return;
+      //if (reward < 1) return;
       if (reward === Infinity) reward = 1;
       graph.nodes.push({
         id: node.id,
@@ -61,8 +47,42 @@ class NodeGraphVis extends Component {
         });
       }
     })
+    const nodeIds = graph.nodes.map((n) => n.id);
+    const windowHeight = window.innerHeight;
+    const nodeSize = Math.sqrt((window.innerWidth*windowHeight)/(graph.nodes.length+1));
+    const columns = Math.floor(window.innerWidth/nodeSize);
+    const calcX = (i) => (i%columns)*nodeSize+(nodeSize/2);
+    const calcY = (i) => Math.floor(i/columns)*nodeSize+(nodeSize/2);
     return (
-      <Graph style={{flex:1,height:'100%'}} graph={graph} options={this.options}/>
+      <Stage width={window.innerWidth} height={window.innerHeight}>
+        <Layer>
+          { graph.edges.map((edge, i) => {
+            const fromIndex = nodeIds.indexOf(edge.from);
+            const fromX = calcX(fromIndex);
+            const fromY = calcY(fromIndex);
+            const toIndex = nodeIds.indexOf(edge.to);
+            const toX = calcX(toIndex);
+            const toY = calcY(toIndex);
+            return <Line key={i}
+                points={[fromX, fromY, toX, toY]}
+                stroke={'black'}
+                strokeWidth={1}
+            />;
+          }) }
+        </Layer>
+        <Layer>
+          { graph.nodes.map((node, i) => (
+            <Group key={i}>
+              <Circle
+                  x={calcX(i)} y={calcY(i)} width={nodeSize} height={nodeSize}
+                  fill={node.color}
+                  opacity={0.9}
+              />
+              <Text x={calcX(i)-3} y={calcY(i)-5} text={node.label}/>
+            </Group>
+          )) }
+        </Layer>
+      </Stage>
     );
   }
 }
