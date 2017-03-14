@@ -65,7 +65,7 @@ class NodeGraphVis extends Component {
             const toY = calcY(toIndex);
             return <Line key={i}
                 points={[fromX, fromY, toX, toY]}
-                stroke={'black'}
+                stroke={'purple'}
                 strokeWidth={1}
             />;
           }) }
