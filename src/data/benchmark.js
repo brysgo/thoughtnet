@@ -93,7 +93,7 @@ parse(input, {comment: '#'}, function(err, unshuffled){
     }
     
     i++;
-  }, 100);
+  }, 50);
   
   
 });

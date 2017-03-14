@@ -13,7 +13,7 @@ class NodeGraphVis extends Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       this.setState({});
-    }, 1000);
+    }, 100);
   }
   
   componentWillUnmount() {
