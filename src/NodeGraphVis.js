@@ -78,7 +78,7 @@ class NodeGraphVis extends Component {
                   fill={node.color}
                   opacity={0.9}
               />
-              <Text x={calcX(i)-3} y={calcY(i)-5} text={node.label}/>
+              <Text x={calcX(i)-3} y={calcY(i)-5} fill={'red'} text={node.label}/>
             </Group>
           )) }
         </Layer>
