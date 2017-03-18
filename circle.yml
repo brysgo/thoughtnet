@@ -4,7 +4,7 @@ machine:
 
 test:
   override:
-    - yarn test
+    - ./node_modules/.bin/jest --forceExit --env=jsdom
     
 dependencies:
   override:
