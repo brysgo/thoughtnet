@@ -1,5 +1,8 @@
 # ThoughtNet
 
+![circleci](https://circleci.com/gh/brysgo/thoughtnet.svg?style=shield&circle-token=:circle-token)
+![daviddm](https://david-dm.org/brysgo/thoughtnet.svg)
+
 This is the start of a horizontally scalable AI that can be taught anything and fed any data, shares knowledge on everything, does not need confusing hyperparameters.
 
 Almost forgot, it is built to run in the browser, so the worlds most powerful AI cluster could one day come online with a few million clicks of a link.
