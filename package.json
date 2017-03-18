@@ -6,7 +6,9 @@
     "babel-loader": "^6.2.7",
     "babel-polyfill": "^6.22.0",
     "babel-preset-react-app": "^2.1.1",
-    "react-scripts": "0.7.0"
+    "canvas": "^1.6.5",
+    "jest": "^19.0.2",
+    "react-scripts": "^0.9.5"
   },
   "dependencies": {
     "csv-parse": "^1.2.0",
@@ -20,7 +22,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "./node_modules/.bin/jest --watch --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "node_modules/",
+      "\\.git/",
+      "\\.c9/"
+    ]
   }
 }

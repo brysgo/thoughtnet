@@ -1,1 +1,3 @@
-{ "presets": ["latest"] }
+{
+  "presets": ["react-app"]
+}
