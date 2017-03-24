@@ -1,5 +1,7 @@
 # ThoughtNet
 
+[![Join the chat at https://gitter.im/thoughtnet/Lobby](https://badges.gitter.im/thoughtnet/Lobby.svg)](https://gitter.im/thoughtnet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![circleci](https://circleci.com/gh/brysgo/thoughtnet.svg?style=shield&circle-token=:circle-token)
 ![daviddm](https://david-dm.org/brysgo/thoughtnet.svg)
 
