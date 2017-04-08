@@ -15,7 +15,7 @@
     "konva": "^1.4.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
-    "react-konva": "^1.1.1",
+    "react-konva": "1.1.1",
     "uuid": "^3.0.1",
     "winston": "^2.3.1"
   },
