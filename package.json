@@ -13,7 +13,7 @@
   "dependencies": {
     "csv-parse": "^1.2.0",
     "konva": "^1.4.0",
-    "react": "^15.4.0",
+    "react": "^15.5.4",
     "react-dom": "^15.4.0",
     "react-konva": "^1.1.1",
     "uuid": "^3.0.1",
