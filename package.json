@@ -8,7 +8,7 @@
     "babel-preset-react-app": "^2.1.1",
     "canvas": "^1.6.5",
     "jest": "^19.0.2",
-    "jest-environment-jsdom": "^19.0.2",
+    "jest-environment-jsdom": "^20.0.0",
     "react-scripts": "^0.9.5"
   },
   "dependencies": {
