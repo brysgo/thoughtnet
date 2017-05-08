@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "csv-parse": "^1.2.0",
-    "konva": "^1.5.0",
+    "konva": "^1.6.2",
     "react": "^15.4.0",
     "react-dom": "^15.5.3",
     "react-konva": "^1.1.2",
