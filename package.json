@@ -5,7 +5,7 @@
   "devDependencies": {
     "babel-loader": "^6.2.7",
     "babel-polyfill": "^6.22.0",
-    "babel-preset-react-app": "^2.1.1",
+    "babel-preset-react-app": "^3.0.0",
     "canvas": "^1.6.5",
     "jest": "^19.0.2",
     "jest-environment-jsdom": "^20.0.0",
