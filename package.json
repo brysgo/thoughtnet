@@ -15,7 +15,7 @@
     "csv-parse": "^1.2.0",
     "konva": "^1.5.0",
     "react": "^15.4.0",
-    "react-dom": "^15.5.3",
+    "react-dom": "^15.6.1",
     "react-konva": "^1.1.2",
     "uuid": "^3.0.1",
     "winston": "^2.3.1"
