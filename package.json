@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "canvas": "^1.6.5",
-    "react-scripts": "^0.9.5"
+    "react-scripts": "^1.0.8"
   },
   "dependencies": {
     "csv-parse": "^1.2.0",
