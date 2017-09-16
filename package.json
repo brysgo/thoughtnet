@@ -3,12 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "babel-loader": "^6.2.7",
-    "babel-polyfill": "^6.22.0",
-    "babel-preset-react-app": "^2.1.1",
     "canvas": "^1.6.5",
-    "jest": "^19.0.2",
-    "jest-environment-jsdom": "^20.0.0",
     "react-scripts": "^1.0.0"
   },
   "dependencies": {
@@ -25,12 +20,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "node_modules/",
-      "\\.git/",
-      "\\.c9/"
-    ]
   }
 }
